@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JapZim Auto Imports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add GSAP for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Add custom styles -->
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        .floating { animation: float 6s ease-in-out infinite; }
+        .pulsing { animation: pulse 2s infinite; }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #2563eb, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-blur {
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold">JapZim Auto</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Home</a>
+                        <a href="#services" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Services</a>
+                        <a href="#vehicles" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Vehicles</a>
+                        <a href="#contact" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Contact</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button p-2 rounded-md hover:bg-blue-700 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden mobile-menu md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Home</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Services</a>
+                <a href="#vehicles" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Vehicles</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative min-h-screen gradient-bg overflow-hidden pt-20">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-600/90"></div>
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80')] bg-cover bg-center"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 fade-in">
+                    <h1 class="text-6xl lg:text-7xl font-bold leading-tight">
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-blue-400">
+                            Future of
+                        </span>
+                        <span class="block">Car Imports</span>
+                    </h1>
+                    <p class="text-xl text-blue-100">
+                        Experience the next generation of Japanese auto imports with cutting-edge technology and unmatched service.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="pulsing px-8 py-4 bg-blue-600 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+                            Get Started
+                        </a>
+                        <a href="#vehicles" class="px-8 py-4 border-2 border-blue-400 rounded-full hover:bg-blue-600/20 transition-all duration-300">
+                            Explore Cars
+                        </a>
+                    </div>
+                </div>
+                <div class="relative floating hidden lg:block">
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537" 
+                         alt="Modern Car" 
+                         class="rounded-3xl shadow-2xl">
+                    <div class="absolute -bottom-10 -right-10 bg-blue-600/90 backdrop-blur-lg p-6 rounded-2xl">
+                        <p class="text-3xl font-bold">500+</p>
+                        <p class="text-blue-200">Cars Imported</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="services" class="py-32 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold mb-6 text-gradient">Our Services</h2>
+                <p class="text-xl text-gray-400">Experience excellence in every step</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-gray-800/50 p-8 rounded-2xl border border-blue-500/20 backdrop-blur-lg">
+                    <div class="w-16 h-16 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-3xl">🚗</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Vehicle Selection</h3>
+                    <p class="text-gray-400">Premium access to Japanese auto auctions with real-time bidding</p>
+                </div>
+                <div class="card-hover bg-gray-800/50 p-8 rounded-2xl border border-blue-500/20 backdrop-blur-lg">
+                    <div class="w-16 h-16 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-3xl">🚢</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Shipping</h3>
+                    <p class="text-gray-400">Safe and secure shipping from Japan to Zimbabwe</p>
+                </div>
+                <div class="card-hover bg-gray-800/50 p-8 rounded-2xl border border-blue-500/20 backdrop-blur-lg">
+                    <div class="w-16 h-16 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-3xl">📋</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Documentation</h3>
+                    <p class="text-gray-400">Complete customs clearance and documentation handling</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vehicles Section -->
+    <div id="vehicles" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-12">Popular Vehicles</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Toyota" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Toyota</h3>
+                        <p class="text-gray-600">Reliable and popular models including Corolla, Hilux, and Land Cruiser</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Honda" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Honda</h3>
+                        <p class="text-gray-600">Quality vehicles including Fit, Civic, and CR-V models</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1558665869-b1018475aa84?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nissan" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Nissan</h3>
+                        <p class="text-gray-600">Popular choices including X-Trail, Navara, and Patrol</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="py-32 bg-gray-900/95 relative">
+        <!-- Background pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMzYjgyZjYiIGZpbGwtb3BhY2l0eT0iMC40Ij48cGF0aCBkPSJNMzYgMzRjMC0yIDItMiAyLTRzLTItMi0yLTQgMi0yIDItNCAyLTIgMi00LTItMi0yLTQgMi0yIDItNGgtMmMwIDItMiAyLTIgNHMtMiAyLTIgNC0yIDItMiA0IDIgMiAyIDQtMiAyLTIgNCAyIDIgMiA0eiIvPjwvZz48L2c+PC9zdmc+')] bg-repeat"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gradient mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-400">Start your journey to owning your dream car</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <!-- Contact Form -->
+                <div class="bg-gray-800/50 p-8 rounded-2xl border border-blue-500/20 backdrop-blur-lg">
+                    <form class="space-y-6" action="https://formsubmit.co/gaintawo@gmail.com" method="POST">
+                        <input type="hidden" name="_next" value="https://your-website-url.com/thanks.html">
+                        <input type="hidden" name="_subject" value="New JapZim Auto Inquiry!">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                <input type="text" name="name" id="name" required
+                                    class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 transition duration-300"
+                                    placeholder="Your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                <input type="email" name="email" id="email" required
+                                    class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 transition duration-300"
+                                    placeholder="your@email.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                            <input type="text" name="subject" id="subject" required
+                                class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 transition duration-300"
+                                placeholder="What's this about?">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea name="message" id="message" rows="4" required
+                                class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 transition duration-300"
+                                placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" 
+                            class="w-full py-4 px-6 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-medium transition duration-300 transform hover:scale-[1.02]">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="card-hover bg-gray-800/50 p-8 rounded-2xl border border-blue-500/20 backdrop-blur-lg">
+                        <h3 class="text-2xl font-bold text-gradient mb-4">Quick Contact</h3>
+                        <div class="space-y-4">
+                            <a href="tel:+263778276176" 
+                                class="flex items-center gap-4 text-gray-300 hover:text-blue-400 transition duration-300">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                <span>+263 778 276 176</span>
+                            </a>
+                            <a href="mailto:gaintawo@gmail.com" 
+                                class="flex items-center gap-4 text-gray-300 hover:text-blue-400 transition duration-300">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                <span>gaintawo@gmail.com</span>
+                            </a>
+                            <a href="https://wa.me/263778276176" 
+                                target="_blank"
+                                class="flex items-center gap-4 text-gray-300 hover:text-green-400 transition duration-300">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                                <span>Chat on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="card-hover bg-gray-800/50 p-8 rounded-2xl border border-blue-500/20 backdrop-blur-lg">
+                        <h3 class="text-2xl font-bold text-gradient mb-4">Visit Us</h3>
+                        <p class="text-gray-300 mb-2">123 Main Street</p>
+                        <p class="text-gray-300">Harare, Zimbabwe</p>
+                    </div>
+
+                    <!-- Fixed WhatsApp Button -->
+                    <a href="https://wa.me/263778276176" 
+                        target="_blank"
+                        class="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 transform hover:scale-110 z-50">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">JapZim Auto</h3>
+                    <p class="text-blue-100">Your trusted partner in Japanese vehicle imports</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <p class="text-blue-100">Email: gaintawo@gmail.com</p>
+                    <p class="text-blue-100">Phone: +263 123 456 789</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Address</h3>
+                    <p class="text-blue-100">123 Main Street</p>
+                    <p class="text-blue-100">Harare, Zimbabwe</p>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-blue-500 pt-8 text-center">
+                <p class="text-blue-100">&copy; 2024 JapZim Auto. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add this script at the bottom of the body -->
+    <script>
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate elements on scroll
+        gsap.utils.toArray('.card-hover').forEach(card => {
+            gsap.from(card, {
+                y: 100,
+                opacity: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top bottom-=100",
+                    end: "top center",
+                    scrub: 1
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-gray-900/90');
+            } else {
+                nav.classList.remove('bg-gray-900/90');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html> 
